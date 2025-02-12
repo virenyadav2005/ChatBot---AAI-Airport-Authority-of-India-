@@ -1,3 +1,4 @@
-gcp_key.json
 .env
+gcp_key.json
 cert/
+.v* 
