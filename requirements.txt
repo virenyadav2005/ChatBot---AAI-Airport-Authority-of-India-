@@ -1,0 +1,2 @@
+flask==2.0.1
+pyOpenSSL==21.0.0 

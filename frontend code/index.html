@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAI Multilingual AI Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+    <script type="module" src="config.js"></script>
+    <script>
+        window.initMap = function() {
+            // Map initialization will be handled in script.js
+        };
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZfY8QIrw-DTKt6n9F8U0D5YcVDmrUXzo&libraries=places&callback=initMap">
+    </script>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="logo">
+        <img src="assets/images/AAI_logo2_rounded.png" alt="AAI Logo" id="aai-logo">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#" id="nav-home">Home</a></li>
+          <li><a href="#" id="nav-about">About Us</a></li>
+          <li><a href="#" id="nav-services">Services</a></li>
+          <li><a href="#" id="nav-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-buttons">
+        <!-- Crowd Monitor Button -->
+        <button class="crowd-button" id="open-crowd" aria-label="Monitor crowd">
+          <i class="fas fa-users"></i>
+          <span>Crowd Status</span>
+        </button>
+        <button class="chat-button" id="open-chat" aria-label="Open chat">
+          Chat with Us
+        </button>
+        <button class="nav-button" id="open-navigation" aria-label="Open navigation">
+          <i class="fas fa-map-marker-alt"></i>
+          Navigation
+        </button>
+        <button class="flight-button" id="open-flights" aria-label="Check flight updates">
+          <i class="fas fa-plane"></i>
+          Flight Updates
+        </button>
+        
+        <!-- New language selector -->
+        <div class="language-selector">
+            <select id="main-language" aria-label="Select language">
+                <optgroup label="Popular Languages">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="ta">தமிழ்</option>
+                </optgroup>
+                <optgroup label="Other Languages">
+                    <option value="bn">বাংলা</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="mr">मराठी</option>
+                    <option value="gu">ગુજરાતી</option>
+                    <option value="kn">ಕನ್ನಡ</option>
+                    <option value="ml">മലയാളം</option>
+                    <option value="pa">ਪੰਜਾਬੀ</option>
+                </optgroup>
+            </select>
+        </div>
+      </div>
+      
+    </header>
+
+    <!-- Crowd Monitoring Modal -->
+    <div class="modal crowd-monitor-modal" id="crowd-monitor-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Crowd Monitoring</h3>
+          <div class="modal-controls">
+            <select id="area-filter" class="area-select">
+              <option value="all">All Areas</option>
+              <option value="security">Security Check</option>
+              <option value="checkin">Check-in Counters</option>
+              <option value="immigration">Immigration</option>
+              <option value="baggage">Baggage Claim</option>
+            </select>
+            <button id="close-crowd-monitor" class="close-btn" aria-label="Close crowd monitor">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="crowd-stats-grid">
+            <!-- Stats cards will be added dynamically -->
+          </div>
+          <div class="crowd-alerts">
+            <h4>Recent Alerts</h4>
+            <div class="alerts-list" id="crowd-alerts-list">
+              <!-- Alerts will be added dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content" style="color:#003366">
+        <h1>Welcome to the Airport Authority of India</h1>
+        <p>Your Multilingual AI Assistant is Here to Help!</p>
+        <button class="cta-button" id="start-chat">Start Chatting</button>
+      </div>
+      <img src="assets/images/AAI_hero1.jpg" alt="Airport Hero">
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <h2>Unique Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>Multilingual Support</h3>
+          <p>Communicate in your preferred language.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-plane"></i>
+          </div>
+          <h3>Real-Time Flight Updates</h3>
+          <p>Get live flight status and gate information.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Airport Navigation</h3>
+          <p>Find your way with interactive maps.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Crowd Monitoring</h3>
+          <p>Check crowd status and expected wait times.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chatbot Interface -->
+    <div class="chatbot-container" id="chatbot">
+      <div class="chat-header">
+        <h3>AAI Assist</h3>
+        <div class="language-selector">
+          <select id="chatbot-language" aria-label="Select language">
+            <optgroup label="Popular Languages">
+              <option value="en">English</option>
+              <option value="hi">हिंदी</option>
+              <option value="ta">தமிழ்</option>
+            </optgroup>
+            <optgroup label="Other Languages">
+              <option value="bn">বাংলা</option>
+              <option value="te">తెలుగు</option>
+              <option value="mr">मराठी</option>
+            </optgroup>
+          </select>
+        </div>
+        <button id="close-chat">×</button>
+      </div>
+      <div class="chat-body" id="chat-body">
+        <!-- Welcome message will be added dynamically -->
+      </div>
+      <form id="chat-form" onsubmit="return false;">
+        <div class="chat-input">
+          <div class="input-features">
+            <button id="voice-input" type="button" aria-label="Voice input">
+              <i class="fas fa-microphone" aria-hidden="true"></i>
+            </button>
+            <input 
+              type="text" 
+              id="user-input" 
+              placeholder="Type your message..." 
+              maxlength="500"
+              aria-label="Message input"
+              required
+            >
+            <button id="upload-file" type="button" aria-label="Upload file">
+              <i class="fas fa-paperclip" aria-hidden="true"></i>
+            </button>
+          </div>
+          <button id="send-message" type="submit" aria-label="Send message">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+      <div class="chat-features">
+        <div class="typing-indicator" style="display: none;">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="character-count">0/500</div>
+      </div>
+    </div>
+
+    <!-- Airport Navigation Section -->
+    <div class="modal navigation-modal" id="navigation-modal">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header" id="nav-modal-header">
+          <h3>Airport Navigation</h3>
+          <div class="search-section" id="search-section">
+            <div class="search-container">
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text"
+                  class="search-input"
+                  placeholder="Search locations..."
+                  aria-label="Search locations">
+              </div>
+              <div id="search-suggestions"
+                class="suggestions-container"></div>
+            </div>
+          </div>
+          <div class="modal-controls">
+            <div class="language-selector">
+                <select id="nav-language" aria-label="Select language">
+                    <optgroup label="Popular Languages">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="ta">தமிழ்</option>
+                    </optgroup>
+                    <optgroup label="Other Languages">
+                        <option value="bn">বাংলা</option>
+                        <option value="te">తెలుగు</option>
+                        <option value="mr">मराठी</option>
+                        <option value="gu">ગુજરાતી</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="pa">ਪੰਜਾਬੀ</option>
+                    </optgroup>
+                </select>
+            </div>
+            <button id="close-navigation" class="close-btn" aria-label="Close Navigation">
+                <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body" id="nav-modal-body">
+          <!-- Left Panel - Search and Controls -->
+          <div class="nav-panel left-panel" id="nav-left-panel">
+            <!-- Search Section -->
+            
+
+            <!-- Quick Filters -->
+            <div class="quick-filters" id="location-filters">
+              <button data-filter="gates" class="filter-btn" id="filter-gates">
+                <i class="fas fa-plane"></i> Gates
+              </button>
+              <button data-filter="food" class="filter-btn" id="filter-food">
+                <i class="fas fa-utensils"></i> Food
+              </button>
+              <button data-filter="restroom" class="filter-btn" id="filter-restroom">
+                <i class="fas fa-restroom"></i> Restrooms
+              </button>
+              <button data-filter="shopping" class="filter-btn" id="filter-shopping">
+                <i class="fas fa-shopping-bag"></i> Shopping
+              </button>
+            </div>
+
+            <!-- Navigation Info -->
+            <div class="navigation-info" id="nav-info">
+              <div class="route-details" id="route-details">
+                <div class="eta-info">
+                  <i class="fas fa-clock"></i>
+                  <span id="estimated-time">-- min</span>
+                  <span>/ </span>
+                  <span id="distance">-- m</span>
+                </div>
+                <button id="start-navigation" class="start-nav-btn">
+                  <i class="fas fa-walking"></i> Start Navigation
+                </button>
+              </div>
+              <div id="directions" class="directions-panel"></div>
+            </div>
+          </div>
+
+          <!-- Right Panel - Map -->
+          <div class="nav-panel right-panel" id="nav-right-panel">
+            <div class="map-container" id="map-container">
+              <div id="map" style="width: 100%; height: 400px;"></div>
+
+              <!-- Map Controls -->
+              <div class="map-controls" id="map-controls">
+                <button id="zoom-in" class="map-btn" title="Zoom In">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button id="zoom-out" class="map-btn" title="Zoom Out">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button id="current-location" class="map-btn"
+                  title="My Location">
+                  <i class="fas fa-crosshairs"></i>
+                </button>
+              </div>
+
+              <!-- Floor Controls -->
+              <div class="floor-controls">
+                <button class="floor-btn" data-floor="L2">L2</button>
+                <button class="floor-btn" data-floor="L1">L1</button>
+                <button class="floor-btn" data-floor="G">G</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flight Updates Modal -->
+    <div class="modal flight-updates-modal" id="flight-updates-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Flight Updates</h3>
+          <button id="close-flights" class="close-btn" aria-label="Close Flight Updates">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="flight-search">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search flights..." class="flight-search-input">
+            </div>
+          </div>
+          <div class="flight-updates-container" id="flight-updates">
+            <!-- Flight cards will be added here dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2025 Airport Authority of India. All rights reserved.</p>
+    </footer>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="loading-state" id="map-loading" aria-live="polite" hidden>
+      Loading map...
+    </div>
+
+    <div class="error-state" id="map-error" aria-live="assertive" hidden>
+      <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+      <p>Unable to load map</p>
+      <button onclick="initializeMap()" aria-label="Retry loading map">
+        Retry
+      </button>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,es,fr,de,ja,ko,zh,ar,ru',
+                layout: google.translate.TranslateElement.InlineLayout.NONE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" 
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
