@@ -1,0 +1,14 @@
+*1. Module -  Research 
+			Basics of NLP (RNN, LSTM, GRU)
+			Find out best architecture
+			research on bert and LLM
+			tokenization
+			 
+* 2. Module - Development 
+			Find out dataset / or we can use our pretrained model for multilingual .
+			work on 2 models (one is Language translation and second is QA (Question answers) models
+			Parameter side tunning
+			
+*3. Design GUI
+
+			
