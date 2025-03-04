@@ -13,10 +13,68 @@
   --z-modal: 1001;
 }
 
+
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f4f4f4;
   color: #003366;
+}
+
+
+.airportname {
+  text-align: center; 
+  margin: 0px 0; /* Margin for spacing */
+  font-size: 1.5rem; /* Font size */
+  font-weight: bold; /* Bold text */
+  position: relative; /* For positioning the icon */
+  padding: 0px; /* Add padding for better spacing */
+  /* background: rgba(255, 255, 255, 0.9); Light background for contrast */
+  /*border-radius: 10px; /* Rounded corners */
+  /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+
+
+/* Indian Flag Colors for Text */
+.airport-text {
+  background: linear-gradient(to right, #FF9933 28.00%, #ffffff 33.33%, #ffffff 60.67%, #138808 66.67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold; /* Bold text */
+}
+
+.airportname h1 {
+  font-size: 1.0rem; /* Larger font size for prominence */
+  font-weight: 400; /* Bold font weight */
+  color: #f9fbfd; /* Dark blue color for a professional look */
+  margin: 0; /* Remove default margin */
+  padding-left: 0px; /* Add spacing between the icon and text */
+  text-transform: uppercase; /* Uppercase text for a bold look */
+  letter-spacing: 1.5px; /* Slightly increased letter spacing */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern sans-serif font */
+  position: relative; /* For the underline effect */
+}
+
+.airportname h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Position the underline below the text */
+  width: 100%;
+  height: 3px; /* Thickness of the underline */
+  background: linear-gradient(90deg, #007BFF, #004080); /* Gradient underline for a modern look */
+  border-radius: 0px; /* Slightly rounded corners for the underline */
+}
+
+.airportname .fa-map-marker {
+  color: #ef0d0d; /* Blue color for the icon */
+  font-size: 1.2rem; /* Slightly larger icon size */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.airportname:hover .fa-map-marker {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
 }
 
 /* Z-index Hierarchy */
@@ -2134,4 +2192,24 @@ img {
     font-size: 0.9rem;
     color: #666;
     margin-top: 5px;
+}
+
+/* Header Title Styles */
+h1 {
+    color: #fbfdff; /* Primary color */
+    text-align: center; /* Center align */
+    margin: 20px 0; /* Margin for spacing */
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold; /* Bold text */
+    position: relative; /* For positioning the icon */
+}
+
+h1 i {
+    color: #FF9933; /* Icon color */
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 1.5rem; /* Icon size */
+    position: absolute; /* Positioning the icon */
+    left: 50%; /* Center the icon */
+    transform: translateX(-50%); /* Adjust for centering */
+    top: 0; /* Align with the text */
 }
